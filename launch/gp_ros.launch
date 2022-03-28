@@ -1,0 +1,10 @@
+<launch>
+
+  <node
+      pkg="gp_ros"
+      type="gp_ros"
+      name="gp_ros"
+      output="screen">
+  </node>
+
+</launch>

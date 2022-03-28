@@ -1,0 +1,30 @@
+<launch>
+
+  <node pkg="mpu6050_serial_to_imu" type="mpu6050_serial_to_imu_node" name="mpu6050_serial_to_imu_node" required="true">
+    <param name="port" value="/dev/ttyACM0"/>
+  </node>
+
+
+  <node type="rviz"
+        name="rviz"
+        pkg="rviz"
+        args="-d $(find gp_ros)/config_file/gp_ros_mpu_skrudd_imu.rviz" >
+  </node>
+
+  <node
+      pkg="gp_ros"
+      type="gp_ros"
+      name="gp_ros"
+      output="screen">
+  </node>
+
+    <!-- tf transform -->
+  <node pkg="tf" type="static_transform_publisher"
+    name="map_nav_broadcaster" args="0 0 0 0 0 0 /base_link /gp_frame 100"/> <!-- VIKTIG -->
+
+    <!-- tf transform -->
+  <node pkg="tf" type="static_transform_publisher"
+    name="map_nav_broadcaster_2" args="-0.06 0.18 0.03 0 0 1.58 /base_link /imu_base 100"/> <!-- VIKTIG -->
+    
+
+</launch>
